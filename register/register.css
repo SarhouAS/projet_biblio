@@ -1,0 +1,47 @@
+body {
+    background-color: #FFFFFF;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #1A73E8;
+    color: white;
+    padding: 15px;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    margin-right: 10px;
+}
+
+.navbar button {
+    margin-left: 10px;
+    background-color: #1A73E8;
+    border: none;
+    color: white;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 1em;
+}
+
+.icon {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: white;
+}
+
+form {
+    width: 300px;
+    margin: 0 auto;
+}
+label {
+    display: block;
+    margin-top: 20px;
+}

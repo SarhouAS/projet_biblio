@@ -1,0 +1,272 @@
+body {
+    background-color: #FFFFFF;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #1A73E8;
+    color: white;
+    padding: 15px 30px;
+    position: relative;
+    z-index: 2;
+}
+
+.navbar .logo {
+    font-size: 2em;
+    font-weight: bold;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    margin-right: 20px;
+    font-size: 1em;
+}
+
+.navbar input[type="text"] {
+    padding: 5px;
+    border-radius: 5px;
+    border: none;
+}
+
+.navbar button a {
+    color: #1A73E8;
+    text-decoration: none;
+}
+
+.navbar button {
+    background-color: white;
+    border: none;
+    color: #1A73E8;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 1em;
+    border-radius: 5px;
+}
+
+.icon a {
+    color: white;
+    font-size: 1.2em;
+    margin-left: 10px;
+}
+
+.main-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background-color: #E5F3FF;
+    padding: 0;
+    height: calc(100vh - 60px);
+    overflow: hidden;
+    position: relative;
+}
+
+.main-content .text-content {
+    z-index: 1;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+}
+
+.main-content .image-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.main-content .image-content img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.main-content h1 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+}
+
+.main-content p {
+    font-size: 1.2em;
+    margin-bottom: 30px;
+}
+
+.cta-button {
+    background-color: #FF4081;
+    border: none;
+    color: white;
+    padding: 15px 30px;
+    margin: 10px;
+    font-size: 1em;
+    cursor: pointer;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.book-section {
+    padding: 50px 20px;
+    text-align: center;
+    background-color: #f8f8f8;
+}
+
+.book-section h2 {
+    font-size: 1.8em;
+    margin-bottom: 30px;
+}
+
+.carousel-container {
+    position: relative;
+    overflow: hidden;
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.carousel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.carousel-slide {
+    display: flex;
+    justify-content: flex-start; /* Ensure the first item is visible */
+    margin-bottom: 20px;
+    position: relative;
+    transition: transform 0.5s ease;
+    width: 100%;
+}
+
+.book-item {
+    text-align: center;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 0 10px;
+    flex: 0 0 auto;
+}
+
+.book-item img {
+    width: 150px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.book-item p {
+    font-size: 1em;
+    margin: 10px 0;
+}
+
+.availability {
+    background-color: #1A73E8;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.carousel-button {
+    position: absolute;
+    transform: translateY(-50%);
+    top: 50%;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 50%;
+    font-size: 1.5em;
+    z-index: 1;
+}
+
+.carousel-button.left {
+    left: 10px;
+}
+
+.carousel-button.right {
+    right: 10px;
+}
+
+.carousel-button[disabled] {
+    background-color: rgba(0, 0, 0, 0.2);
+    cursor: not-allowed;
+}
+
+.carousel-button:hover:not([disabled]) {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.hidden {
+    display: none;
+}
+
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    cursor: pointer;
+}
+
+.box {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 20px;
+    z-index: 1001;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    border-radius: 8px;
+    max-width: 400px;
+    width: 100%;
+}
+
+.box form {
+    display: flex;
+    flex-direction: column;
+}
+
+.box form label,
+.box form input,
+.box form button {
+    margin-bottom: 15px;
+}
+
+.box form input,
+.box form button {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.box form button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.box form button:hover {
+    background-color: #0056b3;
+}

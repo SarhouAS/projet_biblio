@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="commande.css">
+    <title>Admin - Commandes</title>
+</head>
+<body>
+    <header>
+        <div class="navbar">
+            <a href="../index/index.html" class="logo">epic!</a>
+            <div>
+                <a href="../admin/dashboard.html">Home</a>
+                <a href="../commande/commande.html">commande</a>
+                <input type="text" placeholder="Search..." id="search-bar">
+                <button><a href="../login/login.html">Se connecter</a></button>
+                <button><a href="../register/register.html">S'identifier</a></button>
+                <div class="icon">
+                    <a href="#" class="fas fa-heart"></a>
+                    <a href="#" class="fas fa-shopping-cart"></a>
+                    <a href="../profile/profile.html" class="fas fa-user"></a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="main-content">
+        <h1>Commandes des Clients</h1>
+        <table id="commandes-table">
+            <thead>
+                <tr>
+                    <th>ID Commande</th>
+                    <th>Email Utilisateur</th>
+                    <th>Type</th>
+                    <th>État</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+
+    <script src="commande.js"></script>
+</body>
+</html>

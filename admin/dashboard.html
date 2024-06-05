@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <title>Bibliotheque</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <header>
+        <div class="navbar">
+            <a href="../index/index.html" class="logo">epic!</a>
+            <div>
+                <a href="../index/index.html">Home</a>
+                <a href="../commande/commande.html">COMMANDE</a>
+                <input type="text" placeholder="Search..." id="search-bar">
+                <button><a href="../login/login.html">Se connecter</a></button>
+                <button><a href="../register/register.html">S'identifier</a></button>
+                <div class="icon">
+                    <a href="#" class="fas fa-heart"></a>
+                    <a href="#" class="fas fa-shopping-cart"></a>
+                    <a href="../profile/profile.html" class="fas fa-user"></a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="main-content">
+        <div class="text-content">
+            <h1>Thousands of books. Unlimited potential.</h1>
+            <p>Inspire a lifetime of reading and discovery with our award-winning digital library.</p>
+            <button class="cta-button">Families, Start Reading</button>
+            <button class="cta-button">Educators, get it free</button>
+        </div>
+        <div class="image-content">
+            <img src="../asset/réussir son projet de portail web de bibliothèque.webp" alt="Child holding tablet with book cover">
+        </div>
+    </div>
+
+    <div class="book-section">
+        <h2>Explore over 40,000 books, audiobooks & learning videos.</h2>
+        <button id="add-book-btn" class="cta-button">Ajouter un livre</button>
+    
+        <div id="overlay" class="hidden"></div>
+        <div class="box hidden">
+            <form id="book-form">
+                <label for="name">Nom du livre :</label>
+                <input type="text" id="name" name="name" required>
+    
+                <label for="desc">Quantité :</label>
+                <input type="text" id="desc" name="desc" required>
+    
+                <label for="picture">Photo :</label>
+                <input type="file" id="picture" name="picture">
+    
+                <button type="submit">Enregistrer</button>
+            </form>
+        </div>
+        <div id="carousels-container">
+            <div class="carousel-container">
+                <div class="carousel">
+                    <button class="carousel-button left" data-index="0" onclick="plusSlides(-1, 0)">&#10094;</button>
+                    <div class="carousel-slide" data-index="0">
+                    </div>
+                    <button class="carousel-button right" data-index="0" onclick="plusSlides(1, 0)">&#10095;</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="art_ctn"></div>
+
+    <script src="dashboard.js"></script>
+</body>
+</html>

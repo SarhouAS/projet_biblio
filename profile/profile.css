@@ -1,0 +1,110 @@
+body {
+    background-color: #FFFFFF;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #1A73E8;
+    color: white;
+    padding: 15px;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    margin-right: 10px;
+}
+
+.navbar button {
+    margin-left: 10px;
+    background-color: #1A73E8;
+    border: none;
+    color: white;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 1em;
+}
+
+.icon {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: white;
+}
+
+form {
+    width: 300px;
+    margin: 0 auto;
+}
+
+.box {
+    width: 400px;
+    margin: 50px auto;
+    padding: 40px;
+    background: #fff;
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+}
+
+.box form {
+    position: relative;
+}
+
+.box .inputBox {
+    position: relative;
+    margin-bottom: 30px;
+}
+
+.box .inputBox input {
+    width: 100%;
+    padding: 10px 0;
+    font-size: 16px;
+    color: #000;
+    border: none;
+    border-bottom: 1px solid #000;
+    outline: none;
+    background: transparent;
+    transition: all 0.5s ease;
+}
+
+.box .inputBox label {
+    position: absolute;
+    top: 10px;
+    left: 0;
+    padding: 10px 0;
+    font-size: 16px;
+    color: #000;
+    pointer-events: none;
+    transition: all 0.5s ease;
+}
+
+.box .inputBox input:focus ~ label,
+.box .inputBox input:not(:placeholder-shown) ~ label,
+.box .inputBox input:not(:-ms-input-placeholder) ~ label,
+.box .inputBox input:-ms-input-placeholder ~ label {
+    top: -20px;
+    left: 0;
+    color: #03a9f4;
+    font-size: 12px;
+}
+
+.box input[type="submit"],
+.box input[type="button"] {
+    background: #03a9f4;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 18px;
+}
+
+.box input[type="submit"]:hover,
+.box input[type="button"]:hover {
+    background: #0288d1;
+}

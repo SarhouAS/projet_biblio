@@ -1,0 +1,126 @@
+body {
+    background-color: #FFFFFF;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #1A73E8;
+    color: white;
+    padding: 15px 30px;
+    position: relative;
+    z-index: 2;
+}
+
+.navbar .logo {
+    font-size: 2em;
+    font-weight: bold;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    margin-right: 20px;
+    font-size: 1em;
+}
+
+.navbar input[type="text"] {
+    padding: 5px;
+    border-radius: 5px;
+    border: none;
+}
+
+.navbar button a {
+    color: #1A73E8;
+    text-decoration: none;
+}
+
+.navbar button {
+    background-color: white;
+    border: none;
+    color: #1A73E8;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 1em;
+    border-radius: 5px;
+}
+
+.icon a {
+    color: white;
+    font-size: 1.2em;
+    margin-left: 10px;
+}
+
+.main-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background-color: #E5F3FF;
+    padding: 20px;
+    min-height: calc(100vh - 60px);
+    overflow: hidden;
+    position: relative;
+}
+
+.main-content h1 {
+    font-size: 2em;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+table {
+    width: 80%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+table thead {
+    background-color: #1A73E8;
+    color: white;
+}
+
+table thead th {
+    padding: 10px;
+    text-align: left;
+    font-size: 1.1em;
+}
+
+table tbody tr {
+    background-color: #ffffff;
+}
+
+table tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+table tbody td {
+    padding: 10px;
+    text-align: left;
+    font-size: 1em;
+    border-bottom: 1px solid #ddd;
+}
+
+table tbody tr:hover {
+    background-color: #e9f1ff;
+}
+
+table tbody button {
+    background-color: #1A73E8;
+    border: none;
+    color: white;
+    padding: 8px 12px;
+    cursor: pointer;
+    font-size: 0.9em;
+    border-radius: 4px;
+    margin-right: 5px;
+}
+
+table tbody button:hover {
+    background-color: #145dbf;
+}
