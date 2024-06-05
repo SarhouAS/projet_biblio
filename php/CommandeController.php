@@ -16,14 +16,15 @@ try {
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $data = json_decode(file_get_contents("php://input"), true);
 
-        if (isset($data['commandeId']) && isset($data['etat'])) {
-            $commandeId = $data['commandeId'];
-            $etat = $data['etat'];
+        if (isset($data['livreId']) && isset($data['type'])) {
+            $livreId = $data['livreId'];
+            $type = $data['type'];
+            $userId = $_SESSION['user_id']; // Assuming user ID is stored in session
 
-            if ($commande->updateCommandeEtat($commandeId, $etat)) {
+            if ($commande->createCommande($userId, $type)) {
                 echo json_encode(["status" => "success"]);
             } else {
-                echo json_encode(["status" => "error", "message" => "Failed to update commande"]);
+                echo json_encode(["status" => "error", "message" => "Failed to create commande"]);
             }
         } else {
             echo json_encode(["status" => "error", "message" => "Invalid data provided"]);

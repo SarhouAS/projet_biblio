@@ -1,13 +1,21 @@
 <?php
-require_once("../php/livreModel");
-
 header('Content-Type: application/json');
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
+include_once("/php/livreModel.php");
 
 try {
-    $livreModel = new Livre();
-    $livres = $livreModel->getAllLivres();
-    echo json_encode(["status" => "success", "livres" => $livres]);
+    $livres = getLivres();
+    echo json_encode([
+        'status' => 'success',
+        'livres' => $livres
+    ]);
 } catch (Exception $e) {
-    echo json_encode(["status" => "error", "message" => $e->getMessage()]);
+    error_log("Erreur dans livreController.php: " . $e->getMessage());
+    echo json_encode([
+        'status' => 'error',
+        'message' => $e->getMessage()
+    ]);
 }
 ?>

@@ -1,18 +1,15 @@
 <?php
-require_once("../utils/db_connect.php");
+include_once("./utils/db_connect.php");
 
-class Livre {
-    private $db;
+function getLivres() {
+    global $db;
 
-    public function __construct() {
-        global $db;
-        $this->db = $db;
-    }
-
-    public function getAllLivres() {
-        $stmt = $this->db->prepare("SELECT * FROM livres");
-        $stmt->execute();
+    try {
+        $stmt = $db->query('SELECT * FROM livre');
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    } catch (Exception $e) {
+        error_log("Erreur dans livreModel.php: " . $e->getMessage());
+        throw $e;
     }
 }
 ?>
