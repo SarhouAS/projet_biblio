@@ -64,12 +64,12 @@ function addLivreToCarousel(livre) {
 
     const borrow_btn = $("<button></button>").addClass("availability").text("Emprunter");
     borrow_btn.click(() => {
-        handleCommande(livre.ID_LIVRE, "emprunt");
+        handleCommande(livre.ID_LIVRE, "emprunter");
     });
 
     const buy_btn = $("<button></button>").addClass("availability").text("Acheter");
     buy_btn.click(() => {
-        handleCommande(livre.ID_LIVRE, "achat");
+        handleCommande(livre.ID_LIVRE, "acheter");
     });
 
     const cart_icon = $("<i></i>").addClass("far fa-shopping-cart").click(() => {
@@ -106,6 +106,14 @@ function handleCommande(livreId, type) {
         alert("Veuillez vous connecter pour emprunter ou acheter des livres.");
         return;
     }
+
+    // Vérifiez si le livre est dans le panier
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    if (!cart.some(item => item.id === livreId)) {
+        alert("Veuillez ajouter le livre au panier avant de procéder à l'achat ou à l'emprunt.");
+        return;
+    }
+
     $.ajax({
         url: "../php/CommandeController.php",
         type: "POST",

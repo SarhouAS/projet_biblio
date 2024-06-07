@@ -1,7 +1,7 @@
 <?php
 
-require_once("../php/commandeModel.php");
-require_once("./utils/function.php");
+require_once("../php/CommandeModel.php");
+require_once("../php/utils/function.php");
 
 header('Content-Type: application/json');
 
@@ -19,12 +19,18 @@ try {
         if (isset($data['livreId']) && isset($data['type'])) {
             $livreId = $data['livreId'];
             $type = $data['type'];
-            $userId = $_SESSION['user_id']; // Assuming user ID is stored in session
+            $userId = $_SESSION['ID_USER']; // Assuming user ID is stored in session
 
-            if ($commande->createCommande($userId, $type)) {
+            // Validation des types de commande
+            if (!in_array($type, ['acheter', 'emprunter'])) {
+                echo json_encode(["status" => "error", "message" => "Invalid commande type"]);
+                exit;
+            }
+
+            if ($commande->createCommande($userId, $livreId, $type)) {
                 echo json_encode(["status" => "success"]);
             } else {
-                echo json_encode(["status" => "error", "message" => "Failed to create commande"]);
+                echo json_encode(["status" => "error", "message" => "Failed to create commande. Possible reasons: Database issue, invalid data, etc."]);
             }
         } else {
             echo json_encode(["status" => "error", "message" => "Invalid data provided"]);
@@ -36,6 +42,6 @@ try {
         echo json_encode(["status" => "error", "message" => "Invalid request method"]);
     }
 } catch (Exception $e) {
-    echo json_encode(["status" => "error", "message" => $e->getMessage()]);
+    echo json_encode(["status" => "error", "message" => "Exception occurred: " . $e->getMessage()]);
 }
 ?>
