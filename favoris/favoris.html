@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="cart.css">
+    <link rel="stylesheet" href="favoris.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <title>Bibliotheque</title>
 </head>
@@ -28,11 +28,11 @@
 
     <main>
         <div class="book-section">
-            <h2>Votre Panier</h2>
+            <h2>Vos Favoris</h2>
             <div class="carousel-container">
                 <button class="carousel-button left" onclick="plusSlides(-1, 0)">&#10094;</button>
-                <div class="carousel-slide" data-index="0" id="cart-items">
-                    <!-- Les éléments du panier seront ajoutés ici par JavaScript -->
+                <div class="carousel-slide" data-index="0" id="favorites-items">
+                    <!-- Les éléments des favoris seront ajoutés ici par JavaScript -->
                 </div>
                 <button class="carousel-button right" onclick="plusSlides(1, 0)">&#10095;</button>
             </div>
@@ -40,6 +40,6 @@
     </main>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="cart.js"></script>
+    <script src="favoris.js"></script>
 </body>
 </html>

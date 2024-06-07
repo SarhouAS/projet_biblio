@@ -26,17 +26,24 @@ function showSlides(n, no) {
 
 document.addEventListener("DOMContentLoaded", function() {
     loadBooks();
+    loadFavoritesAndCartStatus();
 });
 
-let livre_id = null;
-let currentPhoto = null;
+function loadFavoritesAndCartStatus() {
+    let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-function checkIfEmpty() {
-    const carousels = $(".carousel-slide");
-    carousels.each(function() {
-        if ($(this).children(".book-item").length === 0) {
-            const none_article = $("<h2></h2>").text("Aucun livre");
-            $(this).html(none_article);
+    favorites.forEach(fav => {
+        const favIcon = $(`#livre_${fav.id} .fa-heart`);
+        if (favIcon.length > 0) {
+            favIcon.addClass("fas").removeClass("far");
+        }
+    });
+
+    cart.forEach(cartItem => {
+        const cartIcon = $(`#livre_${cartItem.id} .fa-shopping-cart`);
+        if (cartIcon.length > 0) {
+            cartIcon.addClass("fas").removeClass("far");
         }
     });
 }
@@ -65,25 +72,56 @@ function addLivreToCarousel(livre) {
         handleCommande(livre.ID_LIVRE, "achat");
     });
 
-    ctn.append(img, title, quantity, borrow_btn, buy_btn);
+    const cart_icon = $("<i></i>").addClass("far fa-shopping-cart").click(() => {
+        toggleCart(livre);
+    });
+
+    const fav_icon = $("<i></i>").addClass("far fa-heart").click(() => {
+        toggleFavorites(livre);
+    });
+
+    const icon_container = $("<div></div>").addClass("icon-container").append(cart_icon, fav_icon);
+
+    ctn.append(img, title, quantity, icon_container, borrow_btn, buy_btn);
     lastCarousel.append(ctn);
     const lastIndex = slideIndex.length - 1;
     showSlides(slideIndex[lastIndex], lastIndex);
+
+    // Vérification de l'état des icônes pour le livre actuel
+    let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    if (favorites.some(fav => fav.id === livre.ID_LIVRE)) {
+        fav_icon.addClass("fas").removeClass("far");
+    }
+
+    if (cart.some(cartItem => cartItem.id === livre.ID_LIVRE)) {
+        cart_icon.addClass("fas").removeClass("far");
+    }
 }
 
 function handleCommande(livreId, type) {
+    const userId = 1; // Utilisez l'ID utilisateur réel ici
+    if (!userId) {
+        alert("Veuillez vous connecter pour emprunter ou acheter des livres.");
+        return;
+    }
     $.ajax({
         url: "../php/CommandeController.php",
         type: "POST",
         contentType: "application/json",
         dataType: "json",
-        data: JSON.stringify({ livreId: livreId, type: type }),
+        data: JSON.stringify({ userId: userId, livreId: livreId, type: type }),
         success: (res) => {
             if (res.status === "success") {
                 alert(`${type.charAt(0).toUpperCase() + type.slice(1)} successfully processed.`);
             } else {
                 alert(`Failed to process ${type}.`);
             }
+        },
+        error: (xhr, status, error) => {
+            console.error("Error:", error);
+            alert("An error occurred while processing your request.");
         }
     });
 }
@@ -99,11 +137,14 @@ function loadBooks() {
                 res.livres.forEach(livre => {
                     addLivreToCarousel(livre);
                 });
-                checkIfEmpty();
                 slideIndex.forEach((_, index) => showSlides(slideIndex[index], index));
             } else {
                 alert(res.error);
             }
+        },
+        error: (xhr, status, error) => {
+            console.error("Error:", error);
+            alert("An error occurred while loading books.");
         }
     });
 }
@@ -121,6 +162,112 @@ function createNewCarousel() {
     $("#carousels-container").append(carouselContainer);
 
     slideIndex.push(0);
+}
+
+function toggleCart(livre) {
+    const userId = 1; // Utilisez l'ID utilisateur réel ici
+    if (!userId) {
+        alert("Veuillez vous connecter pour ajouter ou supprimer des articles du panier.");
+        return;
+    }
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    const existingLivre = cart.find(item => item.id === livre.ID_LIVRE);
+    if (existingLivre) {
+        // Supprimer du panier
+        cart = cart.filter(item => item.id !== livre.ID_LIVRE);
+        localStorage.setItem("cart", JSON.stringify(cart));
+        $(`#livre_${livre.ID_LIVRE} .fa-shopping-cart`).removeClass("fas").addClass("far");
+
+        // Supprimer de la base de données
+        fetch("../php/CartController.php", {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ userId: userId, bookId: livre.ID_LIVRE })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.status !== "success") {
+                console.error("Failed to remove from cart:", data.message);
+            }
+        })
+        .catch(error => console.error("Error:", error));
+    } else {
+        // Ajouter au panier
+        cart.push({ id: livre.ID_LIVRE, qty: 1, name: livre.NOM_LIVRE, photo: livre.photo });
+        localStorage.setItem("cart", JSON.stringify(cart));
+        $(`#livre_${livre.ID_LIVRE} .fa-shopping-cart`).addClass("fas").removeClass("far");
+
+        // Ajouter à la base de données
+        fetch("../php/CartController.php", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ userId: userId, bookId: livre.ID_LIVRE })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.status !== "success") {
+                console.error("Failed to add to cart:", data.message);
+            }
+        })
+        .catch(error => console.error("Error:", error));
+    }
+}
+
+function toggleFavorites(livre) {
+    const userId = 1; // Utilisez l'ID utilisateur réel ici
+    if (!userId) {
+        alert("Veuillez vous connecter pour ajouter ou supprimer des articles des favoris.");
+        return;
+    }
+    let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+    const existingFavorite = favorites.find(item => item.id === livre.ID_LIVRE);
+    if (existingFavorite) {
+        // Supprimer des favoris
+        favorites = favorites.filter(item => item.id !== livre.ID_LIVRE);
+        localStorage.setItem("favorites", JSON.stringify(favorites));
+        $(`#livre_${livre.ID_LIVRE} .fa-heart`).removeClass("fas").addClass("far");
+
+        // Supprimer de la base de données
+        fetch("../php/FavorisController.php", {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ userId: userId, bookId: livre.ID_LIVRE })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.status !== "success") {
+                console.error("Failed to remove from favorites:", data.message);
+            }
+        })
+        .catch(error => console.error("Error:", error));
+    } else {
+        // Ajouter aux favoris
+        favorites.push({ id: livre.ID_LIVRE, name: livre.NOM_LIVRE, photo: livre.photo });
+        localStorage.setItem("favorites", JSON.stringify(favorites));
+        $(`#livre_${livre.ID_LIVRE} .fa-heart`).addClass("fas").removeClass("far");
+
+        // Ajouter à la base de données
+        fetch("../php/FavorisController.php", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ userId: userId, bookId: livre.ID_LIVRE })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.status !== "success") {
+                console.error("Failed to add to favorites:", data.message);
+            }
+        })
+        .catch(error => console.error("Error:", error));
+    }
 }
 
 $("#book-form").submit(event => {
