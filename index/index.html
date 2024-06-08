@@ -2,7 +2,6 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../index/index.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
@@ -45,16 +44,16 @@
         <button id="add-book-btn" class="cta-button">Ajouter un livre</button>
     
         <div id="overlay" class="hidden"></div>
-        <div class="box hidden">
-            <form id="book-form">
-                <label for="name">Nom du livre :</label>
-                <input type="text" id="name" name="name" required>
+        <div class="box hidden" id="address-form-box">
+            <form id="address-form">
+                <label for="adresse">Adresse :</label>
+                <input type="text" id="adresse" name="adresse" required>
     
-                <label for="desc">Quantité :</label>
-                <input type="text" id="desc" name="desc" required>
+                <label for="ville">Ville :</label>
+                <input type="text" id="ville" name="ville" required>
     
-                <label for="picture">Photo :</label>
-                <input type="file" id="picture" name="picture">
+                <label for="code_postal">Code Postal :</label>
+                <input type="text" id="code_postal" name="code_postal" required>
     
                 <button type="submit">Enregistrer</button>
             </form>

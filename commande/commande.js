@@ -15,6 +15,11 @@ document.addEventListener('DOMContentLoaded', function() {
                     row.innerHTML = `
                         <td>${commande.ID_COMMANDE}</td>
                         <td>${commande.EMAIL}</td>
+                        <td>${commande.NOM}</td>
+                        <td>${commande.PRENOM}</td>
+                        <td>${commande.ADRESSRE}</td>
+                        <td>${commande.VILLE}</td>
+                        <td>${commande.CODE_POSTAL}</td>
                         <td>${commande.TYPE}</td>
                         <td>
                             <select id="etat-${commande.ID_COMMANDE}">

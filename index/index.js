@@ -1,4 +1,5 @@
 let slideIndex = [0]; // Initialisation de slideIndex pour suivre les carousels
+let currentCommande = null; // Variable pour stocker la commande actuelle
 
 function plusSlides(n, no) {
     showSlides(slideIndex[no] += n, no);
@@ -27,6 +28,7 @@ function showSlides(n, no) {
 document.addEventListener("DOMContentLoaded", function() {
     loadBooks();
     loadFavoritesAndCartStatus();
+    setupAddressForm();
 });
 
 function loadFavoritesAndCartStatus() {
@@ -114,24 +116,12 @@ function handleCommande(livreId, type) {
         return;
     }
 
-    $.ajax({
-        url: "../php/CommandeController.php",
-        type: "POST",
-        contentType: "application/json",
-        dataType: "json",
-        data: JSON.stringify({ userId: userId, livreId: livreId, type: type }),
-        success: (res) => {
-            if (res.status === "success") {
-                alert(`${type.charAt(0).toUpperCase() + type.slice(1)} successfully processed.`);
-            } else {
-                alert(`Failed to process ${type}.`);
-            }
-        },
-        error: (xhr, status, error) => {
-            console.error("Error:", error);
-            alert("An error occurred while processing your request.");
-        }
-    });
+    // Stocker la commande actuelle
+    currentCommande = { userId, livreId, type };
+
+    // Afficher le formulaire d'adresse
+    $("#overlay").removeClass("hidden");
+    $("#address-form-box").removeClass("hidden");
 }
 
 function loadBooks() {
@@ -276,6 +266,70 @@ function toggleFavorites(livre) {
         })
         .catch(error => console.error("Error:", error));
     }
+}
+
+function setupAddressForm() {
+    $("#address-form").submit(event => {
+        event.preventDefault();
+
+        const adresse = $("#adresse").val().trim();
+        const ville = $("#ville").val().trim();
+        const code_postal = $("#code_postal").val().trim();
+
+        if (!adresse || !ville || !code_postal) {
+            alert("Tous les champs doivent être remplis !");
+            return;
+        }
+
+        const userId = 1; // Utilisez l'ID utilisateur réel ici
+        const { livreId, type } = currentCommande;
+
+        // Envoyer les informations d'adresse au serveur
+        $.ajax({
+            url: "../php/AdresseController.php",
+            type: "POST",
+            contentType: "application/json",
+            dataType: "json",
+            data: JSON.stringify({ userId: userId, adresse: adresse, ville: ville, code_postal: code_postal }),
+            success: (res) => {
+                if (res.status === "success") {
+                    // Créer la commande après avoir enregistré l'adresse
+                    createCommande(userId, livreId, type);
+                } else {
+                    alert(`Failed to save address: ${res.message}`);
+                }
+            },
+            error: (xhr, status, error) => {
+                console.error("Error:", error);
+                alert("An error occurred while saving the address.");
+            }
+        });
+
+        // Cacher le formulaire d'adresse
+        $("#overlay").addClass("hidden");
+        $("#address-form-box").addClass("hidden");
+    });
+}
+
+function createCommande(userId, livreId, type) {
+    $.ajax({
+        url: "../php/CommandeController.php",
+        type: "POST",
+        contentType: "application/json",
+        dataType: "json",
+        data: JSON.stringify({ userId: userId, livreId: livreId, type: type }),
+        success: (res) => {
+            if (res.status === "success") {
+                alert(`${type.charAt(0).toUpperCase() + type.slice(1)} successfully processed.`);
+            } else {
+                alert(`Failed to process ${type}.`);
+            }
+        },
+        error: (xhr, status, error) => {
+            console.error("Error:", error);
+            alert("An error occurred while processing your request.");
+        }
+    });
 }
 
 $("#book-form").submit(event => {
