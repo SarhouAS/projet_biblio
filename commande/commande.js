@@ -8,31 +8,32 @@ document.addEventListener('DOMContentLoaded', function() {
         })
         .then(data => {
             if (data.status === 'success') {
+                console.log('Fetched commandes:', data.commandes); // Log fetched commandes
                 const commandes = data.commandes;
-                const tableBody = document.querySelector('#commandes-table tbody');
+                const container = document.querySelector('#commandes-container');
+
                 commandes.forEach(commande => {
-                    const row = document.createElement('tr');
-                    row.innerHTML = `
-                        <td>${commande.ID_COMMANDE}</td>
-                        <td>${commande.EMAIL}</td>
-                        <td>${commande.NOM}</td>
-                        <td>${commande.PRENOM}</td>
-                        <td>${commande.ADRESSRE}</td>
-                        <td>${commande.VILLE}</td>
-                        <td>${commande.CODE_POSTAL}</td>
-                        <td>${commande.TYPE}</td>
-                        <td>
-                            <select id="etat-${commande.ID_COMMANDE}">
-                                <option value="en attente" ${commande.ETAT === 'en attente' ? 'selected' : ''}>En attente</option>
-                                <option value="acceptée" ${commande.ETAT === 'acceptée' ? 'selected' : ''}>Acceptée</option>
-                                <option value="refusée" ${commande.ETAT === 'refusée' ? 'selected' : ''}>Refusée</option>
-                            </select>
-                        </td>
-                        <td>
-                            <button onclick="updateCommande(${commande.ID_COMMANDE})">Mettre à jour</button>
-                        </td>
+                    const card = document.createElement('div');
+                    card.className = 'card';
+                    card.innerHTML = `
+                        <img src="../uploads/${commande.photo}" alt="${commande.NOM_LIVRE}">
+                        <p>Nom du Livre: ${commande.NOM_LIVRE}</p>
+                        <p>Email Utilisateur: ${commande.EMAIL}</p>
+                        <p>Nom: ${commande.NOM}</p>
+                        <p>Prénom: ${commande.PRENOM}</p>
+                        <p>Adresse: ${commande.ADRESSRE}</p>
+                        <p>Ville: ${commande.VILLE}</p>
+                        <p>Code Postal: ${commande.CODE_POSTAL}</p>
+                        <p>Type: ${commande.TYPE}</p>
+                        <label for="etat-${commande.ID_COMMANDE}">État:</label>
+                        <select id="etat-${commande.ID_COMMANDE}">
+                            <option value="en attente" ${commande.ETAT === 'en attente' ? 'selected' : ''}>En attente</option>
+                            <option value="acceptée" ${commande.ETAT === 'acceptée' ? 'selected' : ''}>Acceptée</option>
+                            <option value="refusée" ${commande.ETAT === 'refusée' ? 'selected' : ''}>Refusée</option>
+                        </select>
+                        <button onclick="updateCommande(${commande.ID_COMMANDE})">Mettre à jour</button>
                     `;
-                    tableBody.appendChild(row);
+                    container.appendChild(card);
                 });
             } else {
                 alert('Erreur lors de la récupération des commandes : ' + data.message);
@@ -43,6 +44,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
 function updateCommande(commandeId) {
     const etat = document.getElementById(`etat-${commandeId}`).value;
+
+    // Log the data being sent
+    console.log('Updating Commande:', { commandeId, etat });
 
     fetch('../php/CommandeController.php', {
         method: 'POST',

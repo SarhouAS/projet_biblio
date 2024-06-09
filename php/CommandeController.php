@@ -16,10 +16,11 @@ try {
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $data = json_decode(file_get_contents("php://input"), true);
 
-        if (isset($data['livreId']) && isset($data['type'])) {
+        if (isset($data['livreId']) && isset($data['type']) && isset($data['userId']) && isset($data['idAdresse'])) {
             $livreId = $data['livreId'];
             $type = $data['type'];
-            $userId = $_SESSION['ID_USER']; // Assuming user ID is stored in session
+            $userId = $data['userId'];
+            $idAdresse = $data['idAdresse']; // Include address ID
 
             // Validation des types de commande
             if (!in_array($type, ['acheter', 'emprunter'])) {
@@ -27,10 +28,19 @@ try {
                 exit;
             }
 
-            if ($commande->createCommande($userId, $livreId, $type)) {
+            if ($commande->createCommande($userId, $livreId, $type, $idAdresse)) {
                 echo json_encode(["status" => "success"]);
             } else {
                 echo json_encode(["status" => "error", "message" => "Failed to create commande. Possible reasons: Database issue, invalid data, etc."]);
+            }
+        } elseif (isset($data['commandeId']) && isset($data['etat'])) {
+            $commandeId = $data['commandeId'];
+            $etat = $data['etat'];
+
+            if ($commande->updateCommandeEtat($commandeId, $etat)) {
+                echo json_encode(["status" => "success"]);
+            } else {
+                echo json_encode(["status" => "error", "message" => "Failed to update commande. Possible reasons: Database issue, invalid data, etc."]);
             }
         } else {
             echo json_encode(["status" => "error", "message" => "Invalid data provided"]);

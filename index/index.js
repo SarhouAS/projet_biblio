@@ -294,7 +294,7 @@ function setupAddressForm() {
             success: (res) => {
                 if (res.status === "success") {
                     // Créer la commande après avoir enregistré l'adresse
-                    createCommande(userId, livreId, type);
+                    createCommande(userId, livreId, type, res.idAdresse);
                 } else {
                     alert(`Failed to save address: ${res.message}`);
                 }
@@ -311,13 +311,13 @@ function setupAddressForm() {
     });
 }
 
-function createCommande(userId, livreId, type) {
+function createCommande(userId, livreId, type, idAdresse) {
     $.ajax({
         url: "../php/CommandeController.php",
         type: "POST",
         contentType: "application/json",
         dataType: "json",
-        data: JSON.stringify({ userId: userId, livreId: livreId, type: type }),
+        data: JSON.stringify({ userId: userId, livreId: livreId, type: type, idAdresse: idAdresse }),
         success: (res) => {
             if (res.status === "success") {
                 alert(`${type.charAt(0).toUpperCase() + type.slice(1)} successfully processed.`);
