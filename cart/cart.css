@@ -1,3 +1,4 @@
+/* Styles de base pour les appareils de bureau */
 body {
     background-color: #FFFFFF;
     font-family: Arial, sans-serif;
@@ -11,31 +12,50 @@ body {
     align-items: center;
     background-color: #1A73E8;
     color: white;
-    padding: 15px;
+    padding: 15px 30px;
+    position: relative;
+    z-index: 2;
+}
+
+.navbar .logo {
+    font-size: 2em;
+    font-weight: bold;
 }
 
 .navbar a {
     color: white;
     text-decoration: none;
-    margin-right: 10px;
-}
-
-.navbar button {
-    margin-left: 10px;
-    background-color: #1A73E8;
-    border: none;
-    color: white;
-    padding: 10px 15px;
-    cursor: pointer;
+    margin-right: 20px;
     font-size: 1em;
 }
 
-.icon {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    color: white;
+.navbar input[type="text"] {
+    padding: 5px;
+    border-radius: 5px;
+    border: none;
 }
+
+.navbar button a {
+    color: #1A73E8;
+    text-decoration: none;
+}
+
+.navbar button {
+    background-color: white;
+    border: none;
+    color: #1A73E8;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 1em;
+    border-radius: 5px;
+}
+
+.icon a {
+    color: white;
+    font-size: 1.2em;
+    margin-left: 10px;
+}
+
 
 main {
     padding: 20px;
@@ -105,4 +125,109 @@ main {
 
 .carousel-button.right {
     right: 0;
+}
+
+/* Media Queries */
+@media (max-width: 1200px) {
+    .navbar a {
+        margin-right: 5px;
+        font-size: 0.9em;
+    }
+
+    .navbar button {
+        padding: 8px 12px;
+        font-size: 0.9em;
+    }
+
+    .book-section {
+        width: 90%;
+        padding: 15px;
+    }
+
+    .book-section h2 {
+        font-size: 1.4em;
+    }
+
+    .carousel-slide .book-item {
+        min-width: 180px;
+    }
+}
+
+@media (max-width: 992px) {
+    .navbar {
+        flex-direction: column;
+        padding: 10px;
+    }
+
+    .navbar div {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+
+    .navbar a,
+    .navbar button {
+        margin: 5px 0;
+        width: 100%;
+        text-align: center;
+    }
+
+    .navbar input[type="text"] {
+        width: 90%;
+        margin: 5px 0;
+    }
+
+    .icon {
+        gap: 5px;
+    }
+
+    main {
+        padding: 15px;
+    }
+
+    .book-section {
+        width: 95%;
+    }
+
+    .carousel-slide .book-item {
+        min-width: 160px;
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar input[type="text"] {
+        width: 100%;
+    }
+
+    .book-section h2 {
+        font-size: 1.2em;
+    }
+
+    .carousel-slide .book-item {
+        min-width: 140px;
+    }
+}
+
+@media (max-width: 576px) {
+    .navbar div {
+        align-items: flex-start;
+    }
+
+    .navbar a,
+    .navbar button {
+        font-size: 0.8em;
+    }
+
+    .book-section {
+        padding: 10px;
+    }
+
+    .book-section h2 {
+        font-size: 1em;
+    }
+
+    .carousel-slide .book-item {
+        min-width: 120px;
+    }
 }

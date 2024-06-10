@@ -117,3 +117,105 @@ body {
 .card button:hover {
     background-color: #145dbf;
 }
+
+/* Media Queries */
+@media (max-width: 1200px) {
+    .navbar a {
+        margin-right: 10px;
+        font-size: 0.9em;
+    }
+
+    .navbar .logo {
+        font-size: 1.8em;
+    }
+
+    .navbar button {
+        padding: 8px 16px;
+        font-size: 0.9em;
+    }
+
+    .main-content h2 {
+        font-size: 1.8em;
+    }
+
+    .card {
+        width: 260px;
+    }
+}
+
+@media (max-width: 992px) {
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 10px 20px;
+    }
+
+    .navbar div {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+
+    .navbar a,
+    .navbar button {
+        margin: 5px 0;
+        width: 100%;
+        text-align: center;
+    }
+
+    .navbar input[type="text"] {
+        width: 90%;
+        margin: 5px 0;
+    }
+
+    .icon {
+        gap: 5px;
+    }
+
+    .main-content h2 {
+        font-size: 1.6em;
+    }
+
+    .card {
+        width: 220px;
+        margin: 10px;
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar input[type="text"] {
+        width: 100%;
+    }
+
+    .main-content h2 {
+        font-size: 1.4em;
+    }
+
+    .card {
+        width: 200px;
+    }
+}
+
+@media (max-width: 576px) {
+    .navbar div {
+        align-items: flex-start;
+    }
+
+    .navbar a,
+    .navbar button {
+        font-size: 0.8em;
+    }
+
+    .main-content h2 {
+        font-size: 1.2em;
+    }
+
+    .card {
+        width: 180px;
+    }
+
+    .card img {
+        height: 150px;
+    }
+}

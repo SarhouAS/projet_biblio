@@ -1,3 +1,4 @@
+/* Styles de base pour les appareils de bureau */
 body {
     background-color: #FFFFFF;
     font-family: Arial, sans-serif;
@@ -283,4 +284,153 @@ body {
 
 .fas.fa-heart, .fas.fa-shopping-cart {
     color: #FF4081; /* Couleur pour les icônes remplies */
+}
+
+/* Media Queries */
+@media (max-width: 1200px) {
+    .navbar a {
+        margin-right: 10px;
+        font-size: 0.9em;
+    }
+
+    .main-content h1 {
+        font-size: 2em;
+    }
+
+    .main-content p {
+        font-size: 1em;
+    }
+
+    .cta-button {
+        padding: 10px 20px;
+        font-size: 0.9em;
+    }
+
+    .book-section h2 {
+        font-size: 1.5em;
+    }
+
+    .carousel-container {
+        width: 90%;
+    }
+}
+
+@media (max-width: 992px) {
+    .navbar {
+        flex-direction: column;
+    }
+
+    .navbar div {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .navbar a {
+        margin: 5px 0;
+    }
+
+    .navbar input[type="text"] {
+        width: 80%;
+        margin: 10px 0;
+    }
+
+    .navbar button {
+        width: 80%;
+        margin: 10px 0;
+    }
+
+    .icon a {
+        margin: 5px 0;
+    }
+
+    .main-content {
+        padding: 20px 0;
+    }
+
+    .main-content h1 {
+        font-size: 1.8em;
+    }
+
+    .main-content p {
+        font-size: 0.9em;
+    }
+
+    .main-content .text-content {
+        width: 90%;
+    }
+
+    .book-section {
+        padding: 30px 10px;
+    }
+
+    .carousel-container {
+        width: 95%;
+    }
+
+    .book-item {
+        margin: 0 5px;
+    }
+
+    .carousel-slide {
+        width: 95%;
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar input[type="text"] {
+        width: 100%;
+    }
+
+    .navbar button {
+        width: 100%;
+    }
+
+    .main-content h1 {
+        font-size: 1.5em;
+    }
+
+    .main-content p {
+        font-size: 0.8em;
+    }
+
+    .cta-button {
+        padding: 10px 15px;
+        font-size: 0.8em;
+    }
+
+    .carousel-container {
+        width: 100%;
+    }
+
+    .carousel-slide {
+        width: 100%;
+    }
+
+    .book-item {
+        margin: 0 3px;
+    }
+}
+
+@media (max-width: 576px) {
+    .navbar div {
+        align-items: flex-start;
+    }
+
+    .main-content h1 {
+        font-size: 1.2em;
+    }
+
+    .main-content p {
+        font-size: 0.7em;
+    }
+
+    .cta-button {
+        padding: 8px 10px;
+        font-size: 0.7em;
+    }
+
+    .book-section h2 {
+        font-size: 1.2em;
+    }
 }

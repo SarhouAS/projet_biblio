@@ -1,8 +1,9 @@
 body {
-    background-color: #FFFFFF;
-    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
     padding: 0;
+    color: #333;
 }
 
 .navbar {
@@ -11,37 +12,278 @@ body {
     align-items: center;
     background-color: #1A73E8;
     color: white;
-    padding: 15px;
+    padding: 15px 30px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.navbar .logo {
+    font-size: 2em;
+    font-weight: bold;
 }
 
 .navbar a {
     color: white;
     text-decoration: none;
+    margin-right: 20px;
+    font-size: 1em;
+    transition: color 0.3s;
+}
+
+.navbar a:hover {
+    color: #ffdd57;
+}
+
+.navbar input[type="text"] {
+    padding: 5px;
+    border-radius: 5px;
+    border: none;
     margin-right: 10px;
 }
 
+.navbar button a {
+    color: #1A73E8;
+    text-decoration: none;
+}
+
 .navbar button {
-    margin-left: 10px;
-    background-color: #1A73E8;
+    background-color: white;
     border: none;
-    color: white;
-    padding: 10px 15px;
+    color: #1A73E8;
+    padding: 10px 20px;
     cursor: pointer;
     font-size: 1em;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s;
 }
 
-.icon {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+.navbar button:hover {
+    background-color: #1A73E8;
     color: white;
 }
 
-form {
-    width: 300px;
-    margin: 0 auto;
+.icon a {
+    color: white;
+    font-size: 1.2em;
+    margin-left: 10px;
+    transition: color 0.3s;
 }
-label {
+
+.icon a:hover {
+    color: #ffdd57;
+}
+
+/* Form Styles */
+form {
+    width: 100%;
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+form h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 1.5em;
+    color: #1A73E8;
+}
+
+.inputBox {
+    margin-bottom: 20px;
+}
+
+.inputBox label {
     display: block;
-    margin-top: 20px;
+    margin-bottom: 5px;
+    font-size: 1em;
+    color: #333;
+}
+
+.inputBox input[type="text"],
+.inputBox input[type="email"],
+.inputBox input[type="password"],
+.inputBox select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em;
+    background-color: #f9f9f9;
+    transition: border-color 0.3s;
+}
+
+.inputBox input[type="text"]:focus,
+.inputBox input[type="email"]:focus,
+.inputBox input[type="password"]:focus,
+.inputBox select:focus {
+    border-color: #1A73E8;
+    outline: none;
+}
+
+form input[type="submit"] {
+    width: 100%;
+    background-color: #1A73E8;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 1em;
+    color: white;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    margin-top: 10px;
+}
+
+form input[type="submit"]:hover {
+    background-color: #145dbf;
+}
+
+/* Media Queries */
+@media (max-width: 1200px) {
+    .navbar a {
+        margin-right: 10px;
+        font-size: 0.9em;
+    }
+
+    .navbar button {
+        padding: 8px 12px;
+        font-size: 0.9em;
+    }
+
+    form {
+        margin: 40px auto;
+        padding: 15px;
+    }
+
+    form h2 {
+        font-size: 1.4em;
+    }
+
+    .inputBox label {
+        font-size: 0.9em;
+    }
+
+    .inputBox input[type="text"],
+    .inputBox input[type="email"],
+    .inputBox input[type="password"],
+    .inputBox select,
+    form input[type="submit"] {
+        font-size: 0.9em;
+    }
+}
+
+@media (max-width: 992px) {
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 10px 20px;
+    }
+
+    .navbar div {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+
+    .navbar a,
+    .navbar button {
+        margin: 5px 0;
+        width: 100%;
+        text-align: center;
+    }
+
+    .navbar input[type="text"] {
+        width: 90%;
+        margin: 5px 0;
+    }
+
+    .icon {
+        gap: 5px;
+    }
+
+    form {
+        width: 90%;
+        padding: 20px;
+    }
+
+    form h2 {
+        font-size: 1.3em;
+    }
+
+    .inputBox label {
+        font-size: 0.8em;
+    }
+
+    .inputBox input[type="text"],
+    .inputBox input[type="email"],
+    .inputBox input[type="password"],
+    .inputBox select,
+    form input[type="submit"] {
+        font-size: 0.9em;
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar input[type="text"] {
+        width: 100%;
+    }
+
+    .navbar button {
+        padding: 8px 10px;
+        font-size: 0.8em;
+    }
+
+    form {
+        width: 95%;
+        padding: 15px;
+    }
+
+    form h2 {
+        font-size: 1.2em;
+    }
+
+    .inputBox label {
+        font-size: 0.8em;
+    }
+
+    .inputBox input[type="text"],
+    .inputBox input[type="email"],
+    .inputBox input[type="password"],
+    .inputBox select,
+    form input[type="submit"] {
+        font-size: 0.8em;
+    }
+}
+
+@media (max-width: 576px) {
+    .navbar div {
+        align-items: flex-start;
+    }
+
+    .navbar a,
+    .navbar button {
+        font-size: 0.8em;
+    }
+
+    form {
+        padding: 10px;
+    }
+
+    form h2 {
+        font-size: 1em;
+    }
+
+    .inputBox label {
+        font-size: 0.7em;
+    }
+
+    .inputBox input[type="text"],
+    .inputBox input[type="email"],
+    .inputBox input[type="password"],
+    .inputBox select,
+    form input[type="submit"] {
+        font-size: 0.8em;
+    }
 }

@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE-edge">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="register.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
@@ -14,10 +14,10 @@
 <body>
     <header>
         <div class="navbar">
+            <a href="../index/index.html" class="logo">epic!</a>
             <div>
                 <a href="../index/index.html">Home</a>
                 <a href="../index/index.html">Featured</a>
-                <input type="text" placeholder="Search..." id="search-bar">
                 <button><a href="../login/login.html">Se connecter</a></button>
                 <button><a href="../register/register.html">S'identifier</a></button>
                 <div class="icon">
@@ -31,26 +31,38 @@
 
     <form id="myForm" method="POST" action="register.php">
         <h2>Nous aurons besoin de quelques détails</h2>
-        <label for="firstname">Prénom</label>
-        <input type="text" id="firstname" name="PRENOM" required>
+        <div class="inputBox">
+            <label for="firstname">Prénom</label>
+            <input type="text" id="firstname" name="PRENOM" required>
+        </div>
 
-        <label for="lastname">Nom</label>
-        <input type="text" id="lastname" name="NOM" required>
+        <div class="inputBox">
+            <label for="lastname">Nom</label>
+            <input type="text" id="lastname" name="NOM" required>
+        </div>
 
-        <label for="email">Email</label>
-        <input type="email" id="email" name="EMAIL" required>
+        <div class="inputBox">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="EMAIL" required>
+        </div>
 
-        <label for="password">Mot de passe</label>
-        <input type="password" id="password" name="PWD" required>
+        <div class="inputBox">
+            <label for="password">Mot de passe</label>
+            <input type="password" id="password" name="PWD" required>
+        </div>
 
-        <label for="confirm_password">Confirmez le mot de passe</label>
-        <input type="password" id="confirm_password" name="confirm_password" required>
+        <div class="inputBox">
+            <label for="confirm_password">Confirmez le mot de passe</label>
+            <input type="password" id="confirm_password" name="confirm_password" required>
+        </div>
 
-        <label for="role">Rôle</label>
-        <select id="role" name="ROLE" required>
-            <option value="admin">Admin</option>
-            <option value="client">Client</option>
-        </select>
+        <div class="inputBox">
+            <label for="role">Rôle</label>
+            <select id="role" name="ROLE" required>
+                <option value="admin">Admin</option>
+                <option value="client">Client</option>
+            </select>
+        </div>
 
         <input type="submit" value="Continuer">
     </form>
