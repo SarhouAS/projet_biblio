@@ -21,6 +21,11 @@ body {
     font-weight: bold;
 }
 
+.navbar .logo img {
+    height: 50px;
+    width: auto;
+}
+
 .navbar a {
     color: white;
     text-decoration: none;

@@ -1,9 +1,8 @@
 body {
-    background-color: #f5f5f5;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #FFFFFF;
+    font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    color: #333;
 }
 
 .navbar {
@@ -13,7 +12,8 @@ body {
     background-color: #1A73E8;
     color: white;
     padding: 15px 30px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    position: relative;
+    z-index: 2;
 }
 
 .navbar .logo {
@@ -21,23 +21,22 @@ body {
     font-weight: bold;
 }
 
+.navbar .logo img {
+    height: 50px;
+    width: auto;
+}
+
 .navbar a {
     color: white;
     text-decoration: none;
     margin-right: 20px;
     font-size: 1em;
-    transition: color 0.3s;
-}
-
-.navbar a:hover {
-    color: #ffdd57;
 }
 
 .navbar input[type="text"] {
     padding: 5px;
     border-radius: 5px;
     border: none;
-    margin-right: 10px;
 }
 
 .navbar button a {
@@ -53,21 +52,13 @@ body {
     cursor: pointer;
     font-size: 1em;
     border-radius: 5px;
-    transition: background-color 0.3s, color 0.3s;
-}
-
-.navbar button:hover {
-    background-color: #1A73E8;
-    color: white;
 }
 
 .icon a {
     color: white;
     font-size: 1.2em;
     margin-left: 10px;
-    transition: color 0.3s;
 }
-
 .icon a:hover {
     color: #ffdd57;
 }

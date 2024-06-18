@@ -11,10 +11,10 @@
 <body>
     <header>
         <div class="navbar">
+            <a href="../index/index.html" class="logo"><img src="../asset/IMG_6161.JPEG" alt="Logo" class="logo-img"></a>
             <div>
                 <a href="../index/index.html">Home</a>
-                <a href="../index/index.html">Featured</a>
-                <input type="text" placeholder="Search..." id="search-bar">
+                <a href="../index/index.html">Nouveau</a>
                 <button><a href="../login/login.html">Se connecter</a></button>
                 <button><a href="../register/register.html">S'identifier</a></button>
                 <div class="icon">
@@ -29,9 +29,13 @@
     <div class="login-form">
         <h2>Login</h2>
         <form id="loginForm">
-            <input type="email" id="email" name="email" placeholder="Email" required>
-            <input type="password" id="password" name="password" placeholder="Password" required>
-            <i class="fa fa-eye" aria-hidden="true"></i>
+            <div class="input-container">
+                <input type="email" id="email" name="email" placeholder="Email" required>
+            </div>
+            <div class="input-container">
+                <input type="password" id="password" name="password" placeholder="Password" required>
+                <i class="fa fa-eye" id="togglePassword"></i>
+            </div>
             <button type="submit">Log In</button>
         </form>
     </div>

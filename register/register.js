@@ -1,6 +1,12 @@
 $("form").submit(event => { 
     event.preventDefault();
 
+    // Vérifiez si la case à cocher est cochée
+    if (!$('#acceptTerms').is(':checked')) {
+        alert('Vous devez accepter les conditions de confidentialité pour continuer.');
+        return;
+    }
+
     $.ajax({
         url: "../php/register.php",
         type: "POST",
@@ -11,7 +17,8 @@ $("form").submit(event => {
             EMAIL: $("#email").val(),
             PWD: $("#password").val(),
             confirm_password: $("#confirm_password").val(),
-            ROLE: $("#role").val()
+            ROLE: $("#role").val(),
+            acceptTerms: $("#acceptTerms").is(':checked') ? 'on' : ''
         },
         success: (res) => {
             if (res.success) {

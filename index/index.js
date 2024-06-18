@@ -43,9 +43,9 @@ function loadFavoritesAndCartStatus() {
     });
 
     cart.forEach(cartItem => {
-        const cartIcon = $(`#livre_${cartItem.id} .fa-shopping-cart`);
+        const cartIcon = $(`#livre_${cartItem.id} .fa-cart-shopping`);
         if (cartIcon.length > 0) {
-            cartIcon.addClass("fas").removeClass("far");
+            cartIcon.addClass("fa-cart-plus").removeClass("fa-cart-shopping");
         }
     });
 }
@@ -74,9 +74,9 @@ function addLivreToCarousel(livre) {
         handleCommande(livre.ID_LIVRE, "acheter");
     });
 
-    const cart_icon = $("<i></i>").addClass("far fa-shopping-cart").click(() => {
+    const cart_icon = $("<i></i>").addClass("fa-solid fa-cart-shopping").click(() => {
         toggleCart(livre);
-    });
+    }).css("color", "#44034d");
 
     const fav_icon = $("<i></i>").addClass("far fa-heart").click(() => {
         toggleFavorites(livre);
@@ -98,7 +98,7 @@ function addLivreToCarousel(livre) {
     }
 
     if (cart.some(cartItem => cartItem.id === livre.ID_LIVRE)) {
-        cart_icon.addClass("fas").removeClass("far");
+        cart_icon.addClass("fa-cart-plus").removeClass("fa-cart-shopping");
     }
 }
 
@@ -174,7 +174,7 @@ function toggleCart(livre) {
         // Supprimer du panier
         cart = cart.filter(item => item.id !== livre.ID_LIVRE);
         localStorage.setItem("cart", JSON.stringify(cart));
-        $(`#livre_${livre.ID_LIVRE} .fa-shopping-cart`).removeClass("fas").addClass("far");
+        $(`#livre_${livre.ID_LIVRE} .fa-cart-plus`).removeClass("fa-cart-plus").addClass("fa-cart-shopping");
 
         // Supprimer de la base de données
         fetch("../php/CartController.php", {
@@ -195,7 +195,7 @@ function toggleCart(livre) {
         // Ajouter au panier
         cart.push({ id: livre.ID_LIVRE, qty: 1, name: livre.NOM_LIVRE, photo: livre.photo });
         localStorage.setItem("cart", JSON.stringify(cart));
-        $(`#livre_${livre.ID_LIVRE} .fa-shopping-cart`).addClass("fas").removeClass("far");
+        $(`#livre_${livre.ID_LIVRE} .fa-cart-shopping`).removeClass("fa-cart-shopping").addClass("fa-cart-plus");
 
         // Ajouter à la base de données
         fetch("../php/CartController.php", {

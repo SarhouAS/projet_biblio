@@ -9,22 +9,25 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
     die;
 }
 
-if (!isset($_POST["EMAIL"], $_POST["PWD"])) {
-    echo json_encode(["success" => false, "error" => "Données manquantes"]);
-    die; 
+// Fonction de sanitisation
+function sanitize($data) {
+    return htmlspecialchars(trim($data), ENT_QUOTES, 'UTF-8');
 }
 
-if (empty(trim($_POST["EMAIL"])) || empty(trim($_POST["PWD"]))) {
-    echo json_encode(["success" => false, "error" => "Données vides"]);
+$email = sanitize($_POST["EMAIL"]);
+$pwd = sanitize($_POST["PWD"]);
+
+if (!isset($email, $pwd) || empty($email) || empty($pwd)) {
+    echo json_encode(["success" => false, "error" => "Données manquantes ou vides"]);
     die;
 }
 
 $req = $db->prepare("SELECT * FROM user WHERE EMAIL = ?");
-$req->execute([$_POST["EMAIL"]]);
+$req->execute([$email]);
 
 $user = $req->fetch(PDO::FETCH_ASSOC);
 
-if ($user && password_verify($_POST["PWD"], $user["PWD"])) {
+if ($user && password_verify($pwd, $user["PWD"])) {
     $_SESSION["connected"] = true;
     $_SESSION["ID_USER"] = $user["ID_USER"];
 

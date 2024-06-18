@@ -21,6 +21,11 @@ body {
     font-weight: bold;
 }
 
+.navbar .logo img {
+    height: 50px;
+    width: auto;
+}
+
 .navbar a {
     color: white;
     text-decoration: none;
@@ -143,7 +148,7 @@ body {
 
 .carousel-slide {
     display: flex;
-    justify-content: flex-start; /* Ensure the first item is visible */
+    justify-content: flex-start;
     margin-bottom: 20px;
     position: relative;
     transition: transform 0.5s ease;
@@ -176,6 +181,7 @@ body {
     background-color: #1A73E8;
     color: white;
     border: none;
+    margin-right: 3px;
     padding: 10px 20px;
     border-radius: 5px;
     cursor: pointer;
@@ -191,7 +197,7 @@ body {
     border: none;
     padding: 10px;
     cursor: pointer;
-    border-radius: 50%;
+    border-radius: 4px;
     font-size: 1.5em;
     z-index: 1;
 }
@@ -269,4 +275,252 @@ body {
 
 .box form button:hover {
     background-color: #0056b3;
+}
+
+.icon-container i {
+    cursor: pointer;
+    margin: 0 5px;
+    font-size: 24px;
+}
+
+.far.fa-heart, .far.fa-shopping-cart {
+    color: #ccc;
+}
+
+.fas.fa-heart, .fas.fa-shopping-cart {
+    color: #44034d;
+}
+
+.help-everyone-section {
+    padding: 50px 20px;
+    text-align: center;
+    background-color: #f8f8f8;
+}
+
+.help-everyone-section h2 {
+    font-size: 1.8em;
+    margin-bottom: 30px;
+}
+
+.help-everyone-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.help-everyone-item {
+    text-align: center;
+    margin: 20px;
+    width: 250px;
+}
+
+.help-everyone-item img {
+    width: 200px; /* Taille fixe pour toutes les images */
+    height: 200px; /* Taille fixe pour toutes les images */
+    object-fit: cover; /* Assure que l'image couvre tout le cercle */
+    border-radius: 50%;
+    margin-bottom: 20px;
+}
+
+.help-everyone-item h3 {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+
+.help-everyone-item p {
+    font-size: 1em;
+    color: #666;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-around;
+    padding: 20px;
+    background-color: #1A73E8;
+    color: white;
+    flex-wrap: wrap;
+}
+
+.footer-section {
+    flex: 1;
+    margin: 10px;
+}
+
+.footer-section h3 {
+    font-size: 1.2em;
+    margin-bottom: 15px;
+    color: #ffffff;
+}
+
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-section ul li {
+    margin-bottom: 10px;
+}
+
+.footer-section ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+.footer-section ul li a:hover {
+    text-decoration: underline;
+}
+
+.footer-section .footer-icon {
+    width: 50px;
+    height: auto;
+    margin-bottom: 15px;
+}
+
+/* Media Queries */
+@media (max-width: 1200px) {
+    .navbar a {
+        margin-right: 10px;
+        font-size: 0.9em;
+    }
+
+    .main-content h1 {
+        font-size: 2em;
+    }
+
+    .main-content p {
+        font-size: 1em;
+    }
+
+    .cta-button {
+        padding: 10px 20px;
+        font-size: 0.9em;
+    }
+
+    .book-section h2 {
+        font-size: 1.5em;
+    }
+
+    .carousel-container {
+        width: 90%;
+    }
+}
+
+@media (max-width: 992px) {
+    .navbar {
+        flex-direction: column;
+    }
+
+    .navbar div {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .navbar a {
+        margin: 5px 0;
+    }
+
+    .navbar input[type="text"] {
+        width: 80%;
+        margin: 10px 0;
+    }
+
+    .navbar button {
+        width: 80%;
+        margin: 10px 0;
+    }
+
+    .icon a {
+        margin: 5px 0;
+    }
+
+    .main-content {
+        padding: 20px 0;
+    }
+
+    .main-content h1 {
+        font-size: 1.8em;
+    }
+
+    .main-content p {
+        font-size: 0.9em;
+    }
+
+    .main-content .text-content {
+        width: 90%;
+    }
+
+    .book-section {
+        padding: 30px 10px;
+    }
+
+    .carousel-container {
+        width: 95%;
+    }
+
+    .book-item {
+        margin: 0 5px;
+    }
+
+    .carousel-slide {
+        width: 95%;
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar input[type="text"] {
+        width: 100%;
+    }
+
+    .navbar button {
+        width: 100%;
+    }
+
+    .main-content h1 {
+        font-size: 1.5em;
+    }
+
+    .main-content p {
+        font-size: 0.8em;
+    }
+
+    .cta-button {
+        padding: 10px 15px;
+        font-size: 0.8em;
+    }
+
+    .carousel-container {
+        width: 100%;
+    }
+
+    .carousel-slide {
+        width: 100%;
+    }
+
+    .book-item {
+        margin: 0 3px;
+    }
+}
+
+@media (max-width: 576px) {
+    .navbar div {
+        align-items: flex-start;
+    }
+
+    .main-content h1 {
+        font-size: 1.2em;
+    }
+
+    .main-content p {
+        font-size: 0.7em;
+    }
+
+    .cta-button {
+        padding: 8px 10px;
+        font-size: 0.7em;
+    }
+
+    .book-section h2 {
+        font-size: 1.2em;
+    }
 }

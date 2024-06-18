@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (res.success) {
                     localStorage.setItem("user", JSON.stringify(res.user));
                     alert("Connexion réussie !");
-                    if (res.user.role === "admin") { // Vérification du rôle ici
+                    if (res.user.role === "admin") {
                         window.location.replace("../admin/dashboard.html");
                     } else {
                         window.location.replace("../index/index.html");
@@ -39,13 +39,10 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    $("i").click(() => {
-        if ($("#password").attr("type") === "password") {
-            $("i").removeClass("fa-eye").addClass("fa-eye-slash");
-            $("#password").attr("type", "text");
-        } else {
-            $("i").removeClass("fa-eye-slash").addClass("fa-eye");
-            $("#password").attr("type", "password");
-        }
+    document.getElementById('togglePassword').addEventListener('click', function (e) {
+        const password = document.getElementById('password');
+        const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+        password.setAttribute('type', type);
+        this.classList.toggle('fa-eye-slash');
     });
 });
